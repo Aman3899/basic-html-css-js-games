@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<!-- Default theme class, JS will manage this -->
+<html lang="en" class="theme-cyberpunk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER CORE - Advanced Memory Matrix</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Base Font & Theme Variables */
+        :root,
+        .theme-cyberpunk {
+            --bg-primary: #0a0a1f;
+            --bg-secondary: #1c1c3c;
+            --text-primary: #00ffff;
+            --text-secondary: #a8a8ff;
+            --text-accent: #ff00ff;
+            --text-inverted: #000000;
+            --border-color: rgba(0, 255, 255, 0.3);
+            --border-glow: rgba(0, 255, 255, 0.5);
+            --card-back-bg: repeating-linear-gradient(-45deg, #1c1c3c, #1c1c3c 6px, rgba(0, 255, 255, 0.1) 6px, rgba(0, 255, 255, 0.1) 12px);
+            --card-front-bg: linear-gradient(145deg, #2a2a5a, #3c3c7a);
+            --card-matched-bg: rgba(0, 255, 255, 0.1);
+            --card-matched-border: var(--text-primary);
+            --card-special-border: var(--text-accent);
+            --card-special-glow: 0 0 10px var(--text-accent);
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            --card-glow-hover: 0 0 20px var(--border-glow);
+            --button-bg: linear-gradient(145deg, var(--text-accent), #cc00cc);
+            --button-hover-bg: linear-gradient(145deg, #ff33ff, var(--text-accent));
+            --button-text: #ffffff;
+            --button-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+            --select-bg: rgba(28, 28, 60, 0.8);
+            --select-border: var(--border-color);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+            --modal-bg: rgba(10, 10, 31, 0.9);
+            --modal-border: var(--border-color);
+            --transition-duration: 0.5s;
+        }
+
+        .theme-moltenCore {
+            --bg-primary: #1a0000;
+            --bg-secondary: #4d0000;
+            --text-primary: #ffcc80;
+            --text-secondary: #ff8c00;
+            --text-accent: #ff4500;
+            --text-inverted: #ffffff;
+            --border-color: rgba(255, 140, 0, 0.3);
+            --border-glow: rgba(255, 140, 0, 0.5);
+            --card-back-bg: repeating-linear-gradient(-45deg, #4d0000, #4d0000 6px, rgba(255, 140, 0, 0.1) 6px, rgba(255, 140, 0, 0.1) 12px);
+            --card-front-bg: linear-gradient(145deg, #800000, #b30000);
+            --card-matched-bg: rgba(255, 140, 0, 0.1);
+            --card-matched-border: var(--text-secondary);
+            --card-special-border: var(--text-accent);
+            --card-special-glow: 0 0 10px var(--text-accent);
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            --card-glow-hover: 0 0 20px var(--border-glow);
+            --button-bg: linear-gradient(145deg, #ff4500, #cc3700);
+            --button-hover-bg: linear-gradient(145deg, #ff6347, #dd4810);
+            --button-text: var(--text-inverted);
+            --button-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+            --select-bg: rgba(80, 0, 0, 0.8);
+            --select-border: var(--border-color);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+            --modal-bg: rgba(40, 0, 0, 0.9);
+            --modal-border: var(--border-color);
+        }
+
+        .theme-bioLume {
+            --bg-primary: #013220;
+            --bg-secondary: #00553a;
+            --text-primary: #a7f3d0;
+            --text-secondary: #4ade80;
+            --text-accent: #2dd4bf;
+            --text-inverted: #013220;
+            --border-color: rgba(74, 222, 128, 0.3);
+            --border-glow: rgba(74, 222, 128, 0.5);
+            --card-back-bg: repeating-linear-gradient(-45deg, #00553a, #00553a 6px, rgba(74, 222, 128, 0.1) 6px, rgba(74, 222, 128, 0.1) 12px);
+            --card-front-bg: linear-gradient(145deg, #026e4b, #047857);
+            --card-matched-bg: rgba(74, 222, 128, 0.1);
+            --card-matched-border: var(--text-secondary);
+            --card-special-border: var(--text-accent);
+            --card-special-glow: 0 0 10px var(--text-accent);
+            --card-shadow: 0 5px 15px rgba(0, 20, 0, 0.5);
+            --card-glow-hover: 0 0 20px var(--border-glow);
+            --button-bg: linear-gradient(145deg, #2dd4bf, #14b8a6);
+            --button-hover-bg: linear-gradient(145deg, #5eead4, #2dd4bf);
+            --button-text: var(--text-inverted);
+            --button-shadow: 0 0 15px rgba(45, 212, 191, 0.4);
+            --select-bg: rgba(2, 64, 42, 0.8);
+            --select-border: var(--border-color);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+            --modal-bg: rgba(1, 50, 32, 0.9);
+            --modal-border: var(--border-color);
+        }
+
+        .theme-crystaline {
+            --bg-primary: #e0f2fe;
+            --bg-secondary: #f0f9ff;
+            --text-primary: #1e3a8a;
+            --text-secondary: #be185d;
+            --text-accent: #7c3aed;
+            --text-inverted: #ffffff;
+            --border-color: rgba(165, 180, 252, 0.4);
+            --border-glow: rgba(244, 114, 182, 0.4);
+            --card-back-bg: repeating-linear-gradient(-45deg, #f0f9ff, #f0f9ff 6px, rgba(124, 58, 237, 0.05) 6px, rgba(124, 58, 237, 0.05) 12px);
+            --card-front-bg: linear-gradient(145deg, #e0e7ff, #c7d2fe);
+            --card-matched-bg: rgba(124, 58, 237, 0.05);
+            --card-matched-border: var(--text-accent);
+            --card-special-border: var(--text-secondary);
+            --card-special-glow: 0 0 10px var(--text-secondary);
+            --card-shadow: 0 5px 15px rgba(100, 100, 150, 0.15);
+            --card-glow-hover: 0 0 20px var(--border-glow);
+            --button-bg: linear-gradient(145deg, #a5b4fc, #818cf8);
+            --button-hover-bg: linear-gradient(145deg, #c7d2fe, #a5b4fc);
+            --button-text: #1e3a8a;
+            --button-shadow: 0 0 15px rgba(129, 140, 248, 0.3);
+            --select-bg: rgba(224, 231, 255, 0.8);
+            --select-border: var(--border-color);
+            --select-text: var(--text-primary);
+            --select-arrow: var(--text-primary);
+            --modal-bg: rgba(238, 242, 255, 0.95);
+            --modal-border: var(--border-color);
+            --transition-duration: 0.7s;
+            /* Slightly longer for light */
+        }
+
+        .theme-voidCircuit {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #aaaaaa;
+            --text-accent: #f0f0f0;
+            --text-inverted: #000000;
+            --border-color: #444444;
+            --border-glow: #ffffff;
+            --card-back-bg: repeating-linear-gradient(-45deg, #1a1a1a, #1a1a1a 6px, #333333 6px, #333333 12px);
+            --card-front-bg: linear-gradient(145deg, #2a2a2a, #3c3c3c);
+            --card-matched-bg: rgba(200, 200, 200, 0.1);
+            --card-matched-border: var(--text-secondary);
+            --card-special-border: var(--text-accent);
+            --card-special-glow: 0 0 10px var(--text-accent);
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            --card-glow-hover: 0 0 15px var(--border-glow);
+            --button-bg: linear-gradient(145deg, #e0e0e0, #b0b0b0);
+            --button-hover-bg: linear-gradient(145deg, #f0f0f0, #c0c0c0);
+            --button-text: var(--text-inverted);
+            --button-shadow: 0 0 15px rgba(200, 200, 200, 0.3);
+            --select-bg: #2a2a2a;
+            --select-border: var(--border-color);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+            --modal-bg: rgba(15, 15, 15, 0.9);
+            --modal-border: var(--border-color);
+        }
+
+        /* --- Apply Variables --- */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .header-title {
+            color: var(--text-primary);
+        }
+
+        .header-subtitle,
+        .stats,
+        label {
+            color: var(--text-secondary);
+        }
+
+        .control-button,
+        .modal-button {
+            background-image: var(--button-bg);
+            color: var(--button-text);
+            box-shadow: var(--button-shadow);
+        }
+
+        .control-button:hover,
+        .modal-button:hover {
+            background-image: var(--button-hover-bg);
+        }
+
+        .stats span {
+            color: var(--text-accent);
+        }
+
+        .card-face {
+            border-color: var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .card-back {
+            background-image: var(--card-back-bg);
+        }
+
+        .card-front {
+            background-image: var(--card-front-bg);
+            color: var(--text-primary);
+        }
+
+        .card.matched {
+            border-color: var(--card-matched-border) !important;
+            background: var(--card-matched-bg) !important;
+            box-shadow: 0 0 10px var(--card-matched-border);
+        }
+
+        .card.special .card-face {
+            border-color: var(--card-special-border);
+        }
+
+        .card.special .card-front {
+            box-shadow: inset 0 0 10px var(--card-special-glow);
+        }
+
+        .card:hover:not(.flipped):not(.matched) .card-back {
+            box-shadow: var(--card-shadow), var(--card-glow-hover);
+            transform: scale(1.03);
+        }
+
+        select {
+            background-color: var(--select-bg);
+            border-color: var(--select-border);
+            color: var(--select-text);
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            color: var(--select-arrow);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--text-accent);
+            box-shadow: 0 0 0 2px var(--glow-accent);
+        }
+
+        .modal {
+            background-color: rgba(10, 10, 31, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--modal-bg);
+            border-color: var(--modal-border);
+            box-shadow: 0 0 30px var(--card-glow);
+        }
+
+        .modal-title {
+            color: var(--text-accent);
+        }
+
+        .modal-text {
+            color: var(--text-secondary);
+        }
+
+        .modal-stats {
+            color: var(--text-primary);
+        }
+
+        /* --- Core Styles & Animations --- */
+        body {
+            transition: background var(--transition-duration) ease;
+        }
+
+        .game-board {
+            perspective: 1200px;
+        }
+
+        .card {
+            transform-style: preserve-3d;
+            transition: transform var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card.matched {
+            transform: rotateY(180deg) scale(0.92);
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        /* Keep flipped when matched */
+        .card.reveal {
+            /* Temporary reveal style */
+            transform: rotateY(180deg) scale(1.05);
+            box-shadow: 0 0 20px var(--text-accent);
+            z-index: 10;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform var(--transition-duration) ease;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+        }
+
+        .card-front {
+            transform: rotateY(180deg);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            text-shadow: 0 0 8px currentColor;
+        }
+
+        @media (min-width: 640px) {
+            .card-icon {
+                font-size: 2.8rem;
+            }
+        }
+
+        .card-special-icon {
+            font-size: 2.5rem;
+            color: var(--card-special-border);
+        }
+
+        @media (min-width: 640px) {
+            .card-special-icon {
+                font-size: 3.2rem;
+            }
+        }
+
+        .control-button,
+        .modal-button {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-image var(--transition-duration) ease;
+        }
+
+        .control-button:hover,
+        .modal-button:hover {
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        select {
+            transition: all var(--transition-duration) ease;
+        }
+
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+            z-index: 50;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Bounce effect */
+        .modal.open .modal-content {
+            transform: scale(1);
+        }
+
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Ensure cards don't overlap during shuffle visually */
+        .shuffling .card:not(.matched) {
+            transition: transform 0.1s linear;
+        }
+    </style>
+    <!-- Tailwind Config -->
+    <script>tailwind.config = { theme: { extend: { fontFamily: { orbitron: ['Orbitron', 'sans-serif'], rajdhani: ['Rajdhani', 'sans-serif'] } } } }</script>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center p-4 overflow-hidden">
+
+    <div class="game-container w-full max-w-4xl flex flex-col items-center">
+        <!-- Header -->
+        <header class="text-center mb-6 sm:mb-8">
+            <h1 class="header-title text-4xl md:text-5xl font-bold font-orbitron tracking-wider uppercase mb-2">CYBER
+                CORE</h1>
+            <p class="header-subtitle text-lg font-rajdhani opacity-80 font-light">Advanced Memory Matrix</p>
+        </header>
+
+        <!-- Controls & Stats -->
+        <div id="controls"
+            class="controls-bar w-full max-w-2xl mb-6 p-4 rounded-lg flex flex-col sm:flex-row justify-between items-center gap-4"
+            style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); box-shadow: var(--card-shadow);">
+            <!-- Settings -->
+            <div class="settings flex gap-4">
+                <div>
+                    <label for="difficulty-select"
+                        class="text-xs font-semibold opacity-70 block mb-1">Difficulty</label>
+                    <select id="difficulty-select" class="text-sm p-2 rounded-md shadow-sm focus:outline-none">
+                        <option value="easy">Easy (4x3)</option>
+                        <option value="medium" selected>Medium (4x4)</option>
+                        <option value="hard">Hard (5x4)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="theme-select" class="text-xs font-semibold opacity-70 block mb-1">Theme</label>
+                    <select id="theme-select" class="text-sm p-2 rounded-md shadow-sm focus:outline-none">
+                        <option value="cyberpunk">Cyberpunk</option>
+                        <option value="moltenCore">Molten Core</option>
+                        <option value="bioLume">Bio-Lume</option>
+                        <option value="crystaline">Crystaline</option>
+                        <option value="voidCircuit">Void Circuit</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Stats & Restart -->
+            <div class="flex items-center gap-4 sm:gap-6">
+                <div class="stats flex gap-4 text-lg font-semibold font-rajdhani tabular-nums">
+                    <div class="text-center" title="Moves Made"><i
+                            class="fas fa-exchange-alt fa-xs opacity-70 mr-1"></i><span id="moves-count">0</span></div>
+                    <div class="text-center" title="Time Elapsed"><i
+                            class="fas fa-clock fa-xs opacity-70 mr-1"></i><span id="timer">00:00</span></div>
+                </div>
+                <button id="restart-btn"
+                    class="control-button py-2 px-4 rounded-lg font-orbitron font-semibold text-xs tracking-wider flex items-center gap-2 whitespace-nowrap">
+                    <i class="fas fa-redo"></i> RESTART
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Board -->
+        <div id="game-board" class="game-board w-full max-w-2xl grid gap-2 sm:gap-3 mb-8">
+            <!-- Dynamic Grid Classes Applied by JS -->
+            <!-- Cards will be generated by JavaScript -->
+        </div>
+
+    </div> <!-- End Game Container -->
+
+    <!-- Win Modal -->
+    <div id="win-modal" class="modal fixed inset-0 flex items-center justify-center p-4">
+        <div class="modal-content rounded-2xl p-8 max-w-sm w-full text-center backdrop-blur-md">
+            <h2 class="modal-title font-orbitron text-3xl font-bold mb-4 uppercase">Matrix Solved!</h2>
+            <p class="modal-text font-rajdhani text-lg mb-2">Memory Core Integrity: Optimal</p>
+            <div class="modal-stats font-rajdhani text-base mb-6">
+                <p>Moves: <span id="final-moves" class="font-orbitron font-semibold">0</span></p>
+                <p>Time: <span id="final-time" class="font-orbitron font-semibold">00:00</span></p>
+            </div>
+            <button id="play-again-btn"
+                class="modal-button control-button py-3 px-8 rounded-lg font-orbitron font-semibold text-lg tracking-wider">
+                RE-INITIALIZE
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Elements ---
+            const gameBoard = document.getElementById('game-board');
+            const movesCountEl = document.getElementById('moves-count');
+            const timerEl = document.getElementById('timer');
+            const restartBtn = document.getElementById('restart-btn');
+            const winModal = document.getElementById('win-modal');
+            const finalMovesEl = document.getElementById('final-moves');
+            const finalTimeEl = document.getElementById('final-time');
+            const playAgainBtn = document.getElementById('play-again-btn');
+            const difficultySelect = document.getElementById('difficulty-select');
+            const themeSelect = document.getElementById('theme-select');
+            const htmlElement = document.documentElement;
+
+            // --- Audio --- (Simple Base64 sounds)
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const sounds = {
+                flip: 'data:audio/wav;base64,UklGRjwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YRI financiers', // Short click/flip
+                match: 'data:audio/wav;base64,UklGRkoAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YUY financiers financiers', // Slightly higher pitch/positive
+                shuffle: 'data:audio/wav;base64,UklGRmIAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVY financiers financiers financiers financiers financiers', // Woosh/shuffle
+                win: 'data:audio/wav;base64,UklGRlAAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVYAAAA financiers financiers financiers financiers financiers financiers financiers', // Success chime
+            };
+            function playSound(soundName) {
+                try {
+                    const audio = new Audio(sounds[soundName]);
+                    audio.play().catch(e => { }); // Play and ignore potential errors
+                } catch (e) { console.warn("Audio failed:", e); }
+            }
+
+
+            // --- Game Settings ---
+            const baseIcons = ['atom', 'rocket', 'microchip', 'satellite-dish', 'meteor', 'user-astronaut', 'robot', 'dna', 'flask-vial', 'satellite', 'bugs', 'explosion', 'ghost', 'skull-crossbones', 'shield-halved', 'biohazard'];
+            const specialCards = {
+                shuffle: { icon: 'fa-solid fa-shuffle', type: 'shuffle', label: 'Shuffle' },
+                reveal: { icon: 'fa-solid fa-eye', type: 'reveal', label: 'Reveal' }
+            };
+
+            const difficulties = {
+                easy: { rows: 3, cols: 4, pairs: 6 },    // 12 cards
+                medium: { rows: 4, cols: 4, pairs: 8 },  // 16 cards
+                hard: { rows: 4, cols: 5, pairs: 10 }   // 20 cards
+                // Max based on baseIcons: 16 pairs = 32 cards (e.g., 8x4)
+            };
+
+            // --- State Variables ---
+            let currentDifficulty = 'medium';
+            let currentTheme = 'cyberpunk';
+            let cards = []; // Array of card elements
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let totalPairsInGame = 0;
+            let moves = 0;
+            let timerInterval = null;
+            let secondsElapsed = 0;
+            let canFlip = true;
+            let gameStarted = false;
+            let revealTimeout = null;
+
+            // --- Utility Functions ---
+            function shuffle(array) { /* ... (same as before) ... */
+                for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[array[i], array[j]] = [array[j], array[i]]; } return array;
+            }
+            function formatTime(seconds) { /* ... (same as before) ... */
+                const mins = Math.floor(seconds / 60); const secs = seconds % 60; return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // --- Timer Functions ---
+            function startTimer() { /* ... (same, uses gameStarted) ... */
+                if (gameStarted) return;
+                gameStarted = true;
+                secondsElapsed = 0;
+                timerEl.textContent = formatTime(secondsElapsed);
+                clearInterval(timerInterval);
+                timerInterval = setInterval(() => { secondsElapsed++; timerEl.textContent = formatTime(secondsElapsed); }, 1000);
+            }
+            function stopTimer() { /* ... (same) ... */
+                clearInterval(timerInterval); timerInterval = null; gameStarted = false;
+            }
+
+            // --- Theme & Difficulty ---
+            function applyTheme(themeName) { /* ... (same as before) ... */
+                htmlElement.className = ''; htmlElement.classList.add(`theme-${themeName}`);
+                currentTheme = themeName;
+                localStorage.setItem('cyberMatchTheme', themeName);
+                if (themeSelect.value !== themeName) themeSelect.value = themeName;
+            }
+            function applyDifficulty(difficultyName) {
+                if (difficulties[difficultyName]) {
+                    currentDifficulty = difficultyName;
+                    localStorage.setItem('cyberMatchDifficulty', difficultyName);
+                    if (difficultySelect.value !== difficultyName) difficultySelect.value = difficultyName;
+                    initGame(); // Restart game with new difficulty
+                }
+            }
+
+            // --- Game Initialization ---
+            function initGame() {
+                console.log(`Initializing game - Difficulty: ${currentDifficulty}`);
+                stopTimer();
+                flippedCards = [];
+                matchedPairs = 0;
+                moves = 0;
+                canFlip = true;
+                gameStarted = false;
+                secondsElapsed = 0;
+                updateMoves();
+                timerEl.textContent = formatTime(0);
+                hideWinModal(); // Ensure modal is hidden
+
+                const settings = difficulties[currentDifficulty];
+                totalPairsInGame = settings.pairs;
+
+                // Select icons + special cards
+                let gameCardValues = shuffle(baseIcons).slice(0, totalPairsInGame - 1); // Need pairs - 1 normal icons
+                gameCardValues = [...gameCardValues, ...gameCardValues]; // Duplicate normal icons
+                gameCardValues.push(specialCards.shuffle, specialCards.reveal); // Add one of each special card
+                // gameCardValues.push(specialCards.shuffle, specialCards.shuffle); // Add pair of shuffle
+                // gameCardValues.push(specialCards.reveal, specialCards.reveal); // Add pair of reveal
+
+
+                const shuffledGameValues = shuffle(gameCardValues);
+                createBoard(settings.rows, settings.cols, shuffledGameValues);
+            }
+
+
+            function createBoard(rows, cols, cardValues) {
+                gameBoard.innerHTML = ''; // Clear previous board
+                gameBoard.className = `game-board w-full max-w-2xl grid gap-2 sm:gap-3 mb-8 grid-cols-${cols}`; // Dynamic grid cols
+
+                cardValues.forEach(value => {
+                    const cardElement = document.createElement('div');
+                    const isSpecial = typeof value === 'object';
+                    const cardValue = isSpecial ? value.type : `fa-solid ${value}`; // Use type or icon class
+                    const iconClass = isSpecial ? value.icon : `fa-solid ${value}`;
+                    const cardType = isSpecial ? value.type : 'normal';
+
+                    cardElement.classList.add('card', 'aspect-square');
+                    if (isSpecial) cardElement.classList.add('special');
+                    cardElement.dataset.value = cardValue; // Value used for matching
+                    cardElement.dataset.type = cardType; // 'normal', 'shuffle', 'reveal'
+
+                    cardElement.innerHTML = `
+                        <div class="card-inner">
+                            <div class="card-face card-back"></div>
+                            <div class="card-face card-front">
+                                <i class="${iconClass} ${isSpecial ? 'card-special-icon' : 'card-icon'}"></i>
+                            </div>
+                        </div>
+                    `;
+                    cardElement.addEventListener('click', handleCardClick);
+                    gameBoard.appendChild(cardElement);
+                });
+
+                // Store card elements for shuffle effect
+                cards = Array.from(gameBoard.children);
+            }
+
+            // --- Game Logic Handlers ---
+            function handleCardClick(event) {
+                if (!gameStarted) startTimer();
+
+                const clickedCard = event.currentTarget;
+                if (!canFlip || clickedCard.classList.contains('flipped') || clickedCard.classList.contains('matched')) return;
+
+                playSound('flip');
+                flipCard(clickedCard);
+                flippedCards.push(clickedCard);
+
+                if (flippedCards.length === 2) {
+                    canFlip = false;
+                    incrementMoves();
+                    checkForMatch();
+                }
+            }
+
+            function flipCard(card) { card.classList.add('flipped'); }
+            function incrementMoves() { moves++; updateMoves(); }
+            function updateMoves() { movesCountEl.textContent = moves; }
+
+            function checkForMatch() {
+                const [card1, card2] = flippedCards;
+                const isMatch = card1.dataset.value === card2.dataset.value;
+
+                if (isMatch) {
+                    handleMatch(card1, card2);
+                } else {
+                    setTimeout(handleMismatch, 1000);
+                }
+            }
+
+            function handleMatch(card1, card2) {
+                playSound('match');
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+
+                // Check for special card effects
+                if (card1.dataset.type !== 'normal') {
+                    triggerSpecialEffect(card1.dataset.type);
+                }
+
+                resetFlippedCards();
+                checkWin();
+            }
+
+            function handleMismatch() {
+                // playSound('mismatch'); // Optional: Add mismatch sound
+                flippedCards.forEach(card => card.classList.remove('flipped'));
+                resetFlippedCards();
+            }
+
+
+            function resetFlippedCards() {
+                flippedCards = [];
+                canFlip = true;
+            }
+
+            function checkWin() {
+                if (matchedPairs === totalPairsInGame + 1) { // +1 because we added 2 special cards as 1 pair essentially
+                    stopTimer();
+                    playSound('win');
+                    setTimeout(showWinModal, 500); // Delay modal slightly
+                }
+            }
+
+            // --- Special Card Effects ---
+            function triggerSpecialEffect(type) {
+                console.log("Triggering:", type);
+                if (type === 'shuffle') {
+                    shuffleUnmatched();
+                } else if (type === 'reveal') {
+                    revealTemporarily();
+                }
+            }
+
+            function shuffleUnmatched() {
+                playSound('shuffle');
+                gameBoard.classList.add('shuffling'); // Add class for quick transition
+
+                const unflippedUnmatchedCards = cards.filter(card =>
+                    !card.classList.contains('flipped') && !card.classList.contains('matched')
+                );
+                const currentPositions = unflippedUnmatchedCards.map(card => ({ card, rect: card.getBoundingClientRect() }));
+
+                // Simple shuffle: Swap innerHTML/data of elements in place (visually less smooth)
+                // let contentToShuffle = unflippedUnmatchedCards.map(card => ({ value: card.dataset.value, type: card.dataset.type, innerHTML: card.querySelector('.card-front').innerHTML }));
+                // contentToShuffle = shuffle(contentToShuffle);
+                // unflippedUnmatchedCards.forEach((card, index) => {
+                //     card.dataset.value = contentToShuffle[index].value;
+                //     card.dataset.type = contentToShuffle[index].type;
+                //     card.querySelector('.card-front').innerHTML = contentToShuffle[index].innerHTML;
+                //     card.classList.toggle('special', contentToShuffle[index].type !== 'normal');
+                // });
+
+                // Visual Shuffle (More complex, potentially smoother):
+                // 1. Get current positions.
+                // 2. Shuffle the array of card elements *logically*.
+                // 3. Calculate new positions based on the shuffled order.
+                // 4. Use absolute positioning and transforms to *animate* cards to new positions.
+                // (This is complex, sticking to simpler logical shuffle for now)
+
+                // Simpler: Re-append shuffled elements (causes reflow but works)
+                let parent = gameBoard;
+                let shuffledNodes = shuffle(unflippedUnmatchedCards);
+                // Get all nodes to maintain order of matched/flipped ones
+                let allNodes = Array.from(parent.childNodes);
+                let shuffledIndex = 0;
+                allNodes.forEach(node => {
+                    if (unflippedUnmatchedCards.includes(node)) {
+                        // Replace this node with the next shuffled one
+                        parent.replaceChild(shuffledNodes[shuffledIndex++], node);
+                    }
+                });
+                // Update the global `cards` array reference
+                cards = Array.from(gameBoard.children);
+
+
+                setTimeout(() => gameBoard.classList.remove('shuffling'), 150); // Remove class after brief shuffle time
+            }
+
+            function revealTemporarily() {
+                // Clear any existing reveal timeout
+                clearTimeout(revealTimeout);
+
+                const revealCount = 3;
+                const candidates = cards.filter(card =>
+                    !card.classList.contains('flipped') && !card.classList.contains('matched')
+                );
+                const shuffledCandidates = shuffle(candidates);
+                const toReveal = shuffledCandidates.slice(0, revealCount);
+
+                toReveal.forEach(card => {
+                    card.classList.add('reveal'); // Apply temporary style
+                    flipCard(card); // Flip to show
+                });
+
+                // Set timeout to hide them again
+                revealTimeout = setTimeout(() => {
+                    toReveal.forEach(card => {
+                        card.classList.remove('reveal');
+                        // Only unflip if it wasn't part of the currently selected pair
+                        if (!flippedCards.includes(card)) {
+                            card.classList.remove('flipped');
+                        }
+                    });
+                }, 1500); // Reveal for 1.5 seconds
+            }
+
+            // --- Modal Functions ---
+            function showWinModal() { /* ... (same as before) ... */
+                finalMovesEl.textContent = moves; finalTimeEl.textContent = formatTime(secondsElapsed); winModal.classList.add('open');
+            }
+            function hideWinModal() { /* ... (same as before) ... */ winModal.classList.remove('open'); }
+
+            // --- Restart ---
+            function restartGame() { hideWinModal(); initGame(); }
+
+            // --- Event Listeners ---
+            restartBtn.addEventListener('click', restartGame);
+            playAgainBtn.addEventListener('click', restartGame);
+            difficultySelect.addEventListener('change', (e) => applyDifficulty(e.target.value));
+            themeSelect.addEventListener('change', (e) => applyTheme(e.target.value));
+            winModal.addEventListener('click', (e) => { if (e.target === winModal) hideWinModal(); });
+
+            // --- Initialization ---
+            function loadPreferencesAndInit() {
+                const savedDifficulty = localStorage.getItem('cyberMatchDifficulty') || 'medium';
+                const savedTheme = localStorage.getItem('cyberMatchTheme') || 'cyberpunk';
+
+                currentDifficulty = savedDifficulty;
+                difficultySelect.value = savedDifficulty;
+
+                applyTheme(savedTheme); // Applies theme and sets dropdown
+
+                initGame(); // Start game with loaded settings
+            }
+
+            loadPreferencesAndInit(); // Run on load
+
+        }); // End DOMContentLoaded
+    </script>
+</body>
+
+</html>

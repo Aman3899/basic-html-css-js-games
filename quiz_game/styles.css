@@ -1,0 +1,146 @@
+/* Question and Options */
+#question {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    border: 2px solid #4b5563;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.option-btn {
+    padding: 12px;
+    background: linear-gradient(90deg, #4b5563, #6b7280);
+    border: 2px solid #374151;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.option-btn:hover {
+    background: linear-gradient(90deg, #6366f1, #4f46e5);
+    border-color: #4f46e5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.option-btn.selected {
+    background: linear-gradient(90deg, #10b981, #059669);
+    border-color: #059669;
+}
+
+.option-btn.correct {
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+    border-color: #16a34a;
+}
+
+.option-btn.incorrect {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+    border-color: #dc2626;
+}
+
+/* Button Styling */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-start { background: #6366f1; }
+.btn-next { background: #8b5cf6; }
+.btn-retry { background: #10b981; }
+.btn-answers { background: #f59e0b; }
+.btn-close { background: #6b7280; }
+
+/* Modal Styling */
+.modal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    transform: translateY(-50px);
+    transition: transform 0.4s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+/* Loading Animation */
+.loader-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 8px solid transparent;
+    animation: spin 1s linear infinite;
+}
+
+.loader-inner:nth-child(1) { border-top-color: #6366f1; }
+.loader-inner:nth-child(2) { border-bottom-color: #f59e0b; animation-delay: 0.2s; }
+.loader-inner:nth-child(3) { border-left-color: #10b981; animation-delay: 0.4s; }
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Scrollbar Styling */
+#answers-modal .modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#answers-modal .modal-content::-webkit-scrollbar-track {
+    background: #1f2937;
+    border-radius: 4px;
+}
+
+#answers-modal .modal-content::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 4px;
+}
+
+#answers-modal .modal-content::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #game-container {
+        max-width: 90%;
+        padding: 4px;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    #question {
+        font-size: 1rem;
+    }
+    .option-btn {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

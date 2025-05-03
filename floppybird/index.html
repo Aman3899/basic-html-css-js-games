@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Flappy Bird</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Loading Screen -->
+    <div class="loading fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
+        <div class="loader relative w-24 h-24">
+            <div class="loader-inner"></div>
+            <div class="loader-inner"></div>
+            <div class="loader-inner"></div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container" class="relative w-full max-w-md md:max-w-lg h-[640px] md:h-[720px] bg-gradient-to-b from-blue-300 to-blue-100 rounded-xl shadow-2xl overflow-hidden">
+        <div id="bird" class="bird"></div>
+        <div id="score" class="absolute top-8 left-1/2 transform -translate-x-1/2 text-5xl md:text-6xl font-bold text-white z-20"></div>
+        <div id="high-score" class="absolute top-20 left-1/2 transform -translate-x-1/2 text-xl md:text-2xl font-semibold text-yellow-300 z-20"></div>
+        <div id="ground" class="absolute bottom-0 w-full h-24 bg-gradient-to-b from-brown-700 to-brown-900 z-10"></div>
+    </div>
+
+    <!-- Start Modal -->
+    <div id="start-modal" class="modal active fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div class="modal-content bg-gradient-to-br from-gray-800 to-gray-700 rounded-2xl p-8 w-11/12 max-w-sm md:max-w-md shadow-xl">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-blue-400 mb-6">Enhanced Flappy Bird</h2>
+            <input type="text" id="player-name" placeholder="Enter Your Name" maxlength="12" class="w-full p-3 mb-6 rounded-lg bg-gray-200 text-gray-800 focus:ring-2 focus:ring-blue-400">
+            <div class="modal-buttons flex flex-col gap-4">
+                <button class="btn btn-easy" onclick="startGame('easy')">Easy Mode</button>
+                <button class="btn btn-medium" onclick="startGame('medium')">Medium Mode</button>
+                <button class="btn btn-hard" onclick="startGame('hard')">Hard Mode</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="game-over-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div class="modal-content bg-gradient-to-br from-red-800 to-red-600 rounded-2xl p-8 w-11/12 max-w-sm md:max-w-md shadow-xl">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-yellow-300 mb-6">Game Over!</h2>
+            <p id="final-score" class="text-xl md:text-2xl text-white mb-4">Score: 0</p>
+            <p id="player-high-score" class="text-lg md:text-xl text-white mb-6">Your High Score: 0</p>
+            <div class="modal-buttons flex justify-center">
+                <button class="btn btn-restart" onclick="restartGame()">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

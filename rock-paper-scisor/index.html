@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark-cosmos">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors - Ultimate Edition</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Base Font */
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* --- CSS Variables for Themes --- */
+        :root,
+        .theme-dark-cosmos {
+            --bg-gradient-start: #0f172a;
+            --bg-gradient-via: #1e293b;
+            --bg-gradient-end: #334155;
+            --bg-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle fill="%23ffffff20" cx="10" cy="10" r="1"/><circle fill="%23ffffff10" cx="90" cy="90" r="0.5"/></svg>');
+            --card-bg: rgba(30, 41, 59, 0.8);
+            --card-border: rgba(59, 130, 246, 0.4);
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            --card-shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+            --text-primary: #e0f2fe;
+            --text-secondary: #93c5fd;
+            --text-accent: #3b82f6;
+            --button-bg: linear-gradient(145deg, #3b82f6, #1e40af);
+            --button-text: #ffffff;
+            --button-hover-bg: linear-gradient(145deg, #60a5fa, #3b82f6);
+            --button-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+            --select-bg: rgba(51, 65, 85, 0.8);
+            --select-border: var(--card-border);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+            --transition-duration: 0.6s;
+        }
+
+        .theme-neon-pulse {
+            --bg-gradient-start: #1e1e2e;
+            --bg-gradient-via: #3b0764;
+            --bg-gradient-end: #7c3aed;
+            --bg-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect x="10" y="10" width="80" height="80" fill="none" stroke="%23ec489920" stroke-width="1"/></svg>');
+            --card-bg: rgba(30, 30, 46, 0.8);
+            --card-border: rgba(236, 72, 153, 0.4);
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            --card-shadow-glow: 0 0 20px rgba(236, 72, 153, 0.3);
+            --text-primary: #f5f3ff;
+            --text-secondary: #ec4899;
+            --text-accent: #22d3ee;
+            --button-bg: linear-gradient(145deg, #ec4899, #c026d3);
+            --button-text: #ffffff;
+            --button-hover-bg: linear-gradient(145deg, #f472b6, #ec4899);
+            --button-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+            --select-bg: rgba(59, 7, 100, 0.8);
+            --select-border: var(--card-border);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+        }
+
+        .theme-cyber-grid {
+            --bg-gradient-start: #00001a;
+            --bg-gradient-via: #1a1a3a;
+            --bg-gradient-end: #00001a;
+            --bg-image: linear-gradient(rgba(0, 220, 220, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 0, 150, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            --card-bg: rgba(10, 10, 30, 0.8);
+            --card-border: rgba(0, 220, 220, 0.5);
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            --card-shadow-glow: 0 0 25px rgba(0, 220, 220, 0.3);
+            --text-primary: #ffcc00;
+            --text-secondary: #00dddd;
+            --text-accent: #ff0099;
+            --button-bg: linear-gradient(145deg, #ff0099, #cc007a);
+            --button-text: #ffffff;
+            --button-hover-bg: linear-gradient(145deg, #ff33aa, #dd0088);
+            --button-shadow: 0 4px 15px rgba(255, 0, 153, 0.4);
+            --select-bg: rgba(20, 20, 50, 0.8);
+            --select-border: var(--card-border);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+        }
+
+        .theme-solar-flare {
+            --bg-gradient-start: #7f0000;
+            --bg-gradient-via: #b91c1c;
+            --bg-gradient-end: #dc2626;
+            --bg-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="M 0 50 Q 25 30, 50 50 T 100 50" stroke="%23f8717120" stroke-width="2" fill="none"/></svg>');
+            --card-bg: rgba(69, 10, 10, 0.8);
+            --card-border: rgba(239, 68, 68, 0.5);
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            --card-shadow-glow: 0 0 25px rgba(239, 68, 68, 0.3);
+            --text-primary: #fee2e2;
+            --text-secondary: #f87171;
+            --text-accent: #facc15;
+            --button-bg: linear-gradient(145deg, #ef4444, #b91c1c);
+            --button-text: #ffffff;
+            --button-hover-bg: linear-gradient(145deg, #f87171, #ef4444);
+            --button-shadow: 0 4px 15px rgba(239, 68, 68, 0.5);
+            --select-bg: rgba(127, 29, 29, 0.8);
+            --select-border: var(--card-border);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+        }
+
+        .theme-aurora-veil {
+            --bg-gradient-start: #013220;
+            --bg-gradient-via: #02402a;
+            --bg-gradient-end: #00553a;
+            --bg-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><path d="M 10 10 C 20 20, 40 20, 50 10" stroke="%234ade8030" stroke-width="1" fill="none"/></svg>');
+            --card-bg: rgba(1, 50, 32, 0.8);
+            --card-border: rgba(74, 222, 128, 0.4);
+            --card-shadow: 0 8px 25px rgba(0, 20, 0, 0.5);
+            --card-shadow-glow: 0 0 25px rgba(74, 222, 128, 0.3);
+            --text-primary: #a7f3d0;
+            --text-secondary: #4ade80;
+            --text-accent: #2dd4bf;
+            --button-bg: linear-gradient(145deg, #2dd4bf, #14b8a6);
+            --button-text: #013220;
+            --button-hover-bg: linear-gradient(145deg, #5eead4, #2dd4bf);
+            --button-shadow: 0 4px 15px rgba(45, 212, 191, 0.4);
+            --select-bg: rgba(2, 64, 42, 0.8);
+            --select-border: var(--card-border);
+            --select-text: var(--text-secondary);
+            --select-arrow: var(--text-secondary);
+        }
+
+        /* --- Apply Variables --- */
+        body {
+            background-color: var(--bg-gradient-start);
+            background-image: var(--bg-image), linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-via), var(--bg-gradient-end));
+            color: var(--text-primary);
+            transition: background-color var(--transition-duration) ease-in-out, background-image var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
+        }
+
+        .game-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--card-shadow), var(--card-shadow-glow);
+            transition: background-color var(--transition-duration) ease-in-out, border-color var(--transition-duration) ease-in-out, box-shadow var(--transition-duration) ease-in-out;
+        }
+
+        .choice-button {
+            background-image: var(--button-bg);
+            color: var(--button-text);
+            box-shadow: var(--button-shadow);
+            transition: background-image var(--transition-duration) ease-in-out, transform 0.2s ease, box-shadow var(--transition-duration) ease-in-out;
+        }
+
+        .choice-button:hover {
+            background-image: var(--button-hover-bg);
+            transform: scale(1.05);
+        }
+
+        .choice-button:active {
+            transform: scale(0.95);
+        }
+
+        .theme-selector,
+        .difficulty-selector {
+            background-color: var(--select-bg);
+            border: 1px solid var(--select-border);
+            color: var(--select-text);
+            transition: background-color var(--transition-duration) ease-in-out, border-color var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
+        }
+
+        .theme-selector select,
+        .difficulty-selector select {
+            background-color: transparent;
+            color: var(--select-text);
+            border: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em;
+            padding-right: 2.5rem;
+            transition: color var(--transition-duration) ease-in-out;
+        }
+
+        .theme-selector select:focus,
+        .difficulty-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--text-accent);
+        }
+
+        .history-panel {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            transition: background-color var(--transition-duration) ease-in-out, border-color var(--transition-duration) ease-in-out;
+        }
+
+        .result-text {
+            color: var(--text-secondary);
+            transition: color var(--transition-duration) ease-in-out, opacity 0.5s ease-in-out;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        orbitron: ['Orbitron', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="game-container w-full max-w-3xl rounded-2xl p-6 sm:p-8">
+        <h1 class="font-orbitron text-3xl sm:text-4xl font-bold text-center mb-6 text-[var(--text-primary)]">Rock Paper
+            Scissors</h1>
+
+        <!-- Theme and Difficulty Selectors -->
+        <div class="flex flex-col sm:flex-row justify-between mb-6 gap-4">
+            <div class="theme-selector w-full sm:w-48 rounded-lg">
+                <label for="theme-select" class="sr-only">Select Theme</label>
+                <select id="theme-select" class="w-full p-2 rounded-lg text-center font-semibold cursor-pointer">
+                    <option value="dark-cosmos">Dark Cosmos</option>
+                    <option value="neon-pulse">Neon Pulse</option>
+                    <option value="cyber-grid">Cyber Grid</option>
+                    <option value="solar-flare">Solar Flare</option>
+                    <option value="aurora-veil">Aurora Veil</option>
+                </select>
+            </div>
+            <div class="difficulty-selector w-full sm:w-48 rounded-lg">
+                <label for="difficulty-select" class="sr-only">Select Difficulty</label>
+                <select id="difficulty-select" class="w-full p-2 rounded-lg text-center font-semibold cursor-pointer">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Score and Round Info -->
+        <div class="flex justify-between mb-6 text-lg font-semibold text-[var(--text-secondary)]">
+            <div>
+                <span>Player: <span id="player-score">0</span></span> |
+                <span>Computer: <span id="computer-score">0</span></span>
+            </div>
+            <span>Round: <span id="round-count">0</span></span>
+        </div>
+
+        <!-- Result Display -->
+        <div class="result-text text-center text-xl mb-6 min-h-[2rem]" id="result-text"></div>
+
+        <!-- Choice Buttons -->
+        <div class="flex justify-center flex-wrap gap-4 mb-6">
+            <button class="choice-button font-semibold py-3 px-6 rounded-lg text-lg flex items-center gap-2"
+                data-choice="rock">
+                <i class="fas fa-hand-rock"></i> Rock
+            </button>
+            <button class="choice-button font-semibold py-3 px-6 rounded-lg text-lg flex items-center gap-2"
+                data-choice="paper">
+                <i class="fas fa-hand-paper"></i> Paper
+            </button>
+            <button class="choice-button font-semibold py-3 px-6 rounded-lg text-lg flex items-center gap-2"
+                data-choice="scissors">
+                <i class="fas fa-hand-scissors"></i> Scissors
+            </button>
+        </div>
+
+        <!-- History Panel -->
+        <div class="history-panel w-full rounded-lg p-4 mb-6 hidden" id="history-panel">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-orbitron text-xl text-[var(--text-primary)]">Game History</h2>
+                <button id="clear-history"
+                    class="text-[var(--text-secondary)] hover:text-[var(--text-accent)] text-sm">Clear History</button>
+            </div>
+            <div id="history-list" class="text-[var(--text-secondary)] text-sm max-h-64 overflow-y-auto"></div>
+        </div>
+        <button id="toggle-history" class="text-[var(--text-secondary)] hover:text-[var(--text-accent)] mb-4">Show
+            History</button>
+
+        <!-- Reset Button -->
+        <button id="reset-button"
+            class="bg-[var(--button-bg)] text-[var(--button-text)] font-semibold py-2 px-4 rounded-lg hover:bg-[var(--button-hover-bg)] transition">Reset
+            Game</button>
+    </div>
+
+    <script>
+        const choices = ['rock', 'paper', 'scissors'];
+        let playerScore = 0;
+        let computerScore = 0;
+        let roundCount = 0;
+        let gameHistory = JSON.parse(localStorage.getItem('rpsGameHistory')) || [];
+        let playerChoiceHistory = [];
+
+        const playerScoreElement = document.getElementById('player-score');
+        const computerScoreElement = document.getElementById('computer-score');
+        const roundCountElement = document.getElementById('round-count');
+        const resultTextElement = document.getElementById('result-text');
+        const choiceButtons = document.querySelectorAll('.choice-button');
+        const resetButton = document.getElementById('reset-button');
+        const themeSelect = document.getElementById('theme-select');
+        const difficultySelect = document.getElementById('difficulty-select');
+        const historyPanel = document.getElementById('history-panel');
+        const historyList = document.getElementById('history-list');
+        const toggleHistoryButton = document.getElementById('toggle-history');
+        const clearHistoryButton = document.getElementById('clear-history');
+
+        // Theme Switching
+        function applyTheme(themeName) {
+            document.documentElement.className = '';
+            document.documentElement.classList.add(`theme-${themeName}`);
+            localStorage.setItem('rpsTheme', themeName);
+            if (themeSelect.value !== themeName) {
+                themeSelect.value = themeName;
+            }
+        }
+
+        themeSelect.addEventListener('change', (e) => {
+            applyTheme(e.target.value);
+        });
+
+        // Initialize Theme
+        const savedTheme = localStorage.getItem('rpsTheme') || 'dark-cosmos';
+        applyTheme(savedTheme);
+
+        // Get Computer's Choice Based on Difficulty
+        function getComputerChoice(difficulty) {
+            if (difficulty === 'easy') {
+                return choices[Math.floor(Math.random() * 3)];
+            }
+
+            // Count player's choice frequency
+            const choiceCounts = { rock: 0, paper: 0, scissors: 0 };
+            playerChoiceHistory.forEach(choice => choiceCounts[choice]++);
+
+            // Find most frequent choice
+            let mostFrequent = 'rock';
+            let maxCount = choiceCounts.rock;
+            if (choiceCounts.paper > maxCount) {
+                mostFrequent = 'paper';
+                maxCount = choiceCounts.paper;
+            }
+            if (choiceCounts.scissors > maxCount) {
+                mostFrequent = 'scissors';
+            }
+
+            // Counter logic
+            const counters = {
+                rock: 'paper',
+                paper: 'scissors',
+                scissors: 'rock'
+            };
+
+            // Medium: 60% chance to counter most frequent
+            // Hard: 90% chance to counter most frequent
+            const counterProbability = difficulty === 'medium' ? 0.6 : 0.9;
+            if (Math.random() < counterProbability) {
+                return counters[mostFrequent];
+            }
+            return choices[Math.floor(Math.random() * 3)];
+        }
+
+        // Determine Winner
+        function determineWinner(playerChoice, computerChoice) {
+            if (playerChoice === computerChoice) {
+                return { result: 'tie', message: `It's a tie! Both chose ${playerChoice}.` };
+            }
+            if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                playerScore++;
+                playerScoreElement.textContent = playerScore;
+                return { result: 'win', message: `You win! ${playerChoice} beats ${computerChoice}.` };
+            }
+            computerScore++;
+            computerScoreElement.textContent = computerScore;
+            return { result: 'lose', message: `Computer wins! ${computerChoice} beats ${playerChoice}.` };
+        }
+
+        // Save Game to History
+        function saveGame(playerChoice, computerChoice, result, difficulty) {
+            const game = {
+                playerChoice,
+                computerChoice,
+                result: result.result,
+                message: result.message,
+                difficulty,
+                timestamp: new Date().toLocaleString()
+            };
+            gameHistory.unshift(game);
+            if (gameHistory.length > 50) gameHistory.pop(); // Limit history to 50 entries
+            localStorage.setItem('rpsGameHistory', JSON.stringify(gameHistory));
+            updateHistoryDisplay();
+        }
+
+        // Update History Display
+        function updateHistoryDisplay() {
+            historyList.innerHTML = gameHistory.length ?
+                gameHistory.map(game => `
+                    <div class="border-b border-[var(--card-border)] py-2">
+                        <span>${game.timestamp}</span> | 
+                        You: ${game.playerChoice} vs Computer: ${game.computerChoice} | 
+                        ${game.message} | 
+                        Difficulty: ${game.difficulty}
+                    </div>
+                `).join('') :
+                '<div>No games played yet.</div>';
+        }
+
+        // Play Game
+        function playGame(playerChoice) {
+            const difficulty = difficultySelect.value;
+            playerChoiceHistory.push(playerChoice);
+            if (playerChoiceHistory.length > 10) playerChoiceHistory.shift(); // Keep last 10 choices
+            const computerChoice = getComputerChoice(difficulty);
+            const result = determineWinner(playerChoice, computerChoice);
+            roundCount++;
+            roundCountElement.textContent = roundCount;
+            resultTextElement.textContent = result.message;
+            resultTextElement.classList.remove('fade-in');
+            void resultTextElement.offsetWidth; // Trigger reflow
+            resultTextElement.classList.add('fade-in');
+            saveGame(playerChoice, computerChoice, result, difficulty);
+        }
+
+        // Event Listeners
+        choiceButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                playGame(button.dataset.choice);
+            });
+        });
+
+        resetButton.addEventListener('click', () => {
+            playerScore = 0;
+            computerScore = 0;
+            roundCount = 0;
+            playerScoreElement.textContent = '0';
+            computerScoreElement.textContent = '0';
+            roundCountElement.textContent = '0';
+            resultTextElement.textContent = '';
+            playerChoiceHistory = [];
+        });
+
+        toggleHistoryButton.addEventListener('click', () => {
+            historyPanel.classList.toggle('hidden');
+            toggleHistoryButton.textContent = historyPanel.classList.contains('hidden') ? 'Show History' : 'Hide History';
+        });
+
+        clearHistoryButton.addEventListener('click', () => {
+            gameHistory = [];
+            localStorage.removeItem('rpsGameHistory');
+            updateHistoryDisplay();
+        });
+
+        // Initialize
+        updateHistoryDisplay();
+    </script>
+</body>
+
+</html>

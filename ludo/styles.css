@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #0d1b2a, #1b263b, #415a77);
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
+}
+
+.game-container {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(65, 90, 119, 0.8), inset 0 0 10px rgba(255, 255, 255, 0.1);
+    border: 2px solid #e0e1dd;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.title {
+    color: #e0e1dd;
+    text-shadow: 0 0 10px #778da9, 0 0 20px #415a77;
+    margin-bottom: 2rem;
+    font-size: 2.5em;
+    animation: glow 2s infinite alternate;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(15, 40px);
+    grid-template-rows: repeat(15, 40px);
+    gap: 2px;
+    margin: 2rem auto;
+    width: 620px;
+    height: 620px;
+    background: #1b263b;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    background: #778da9;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.cell.safe { background: #ffd700; box-shadow: 0 0 10px #ffd700; }
+.cell.path { background: #e0e1dd; }
+.cell.home { background: linear-gradient(45deg, #ff4e00, #ec9f05); }
+.cell.red { background: #ff4e00; }
+.cell.green { background: #00ff7f; }
+.cell.blue { background: #1e90ff; }
+.cell.yellow { background: #ffff00; }
+.cell.token {
+    color: #fff;
+    font-weight: bold;
+    animation: tokenPulse 1s infinite;
+}
+
+.cell:hover:not(.token) {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.btn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff4e00, #ec9f05);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(236, 159, 5, 0.4);
+    margin: 10px;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(236, 159, 5, 0.6);
+    background: linear-gradient(45deg, #ec9f05, #ff4e00);
+}
+
+.reset-btn {
+    background: linear-gradient(45deg, #ff0033, #ff6666);
+}
+
+.reset-btn:hover {
+    background: linear-gradient(45deg, #ff6666, #ff0033);
+}
+
+.status {
+    margin: 1.5rem 0;
+    font-size: 1.3em;
+    color: #e0e1dd;
+    text-shadow: 0 0 5px #778da9;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.modal-content {
+    background: #1b263b;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(65, 90, 119, 0.8);
+    border: 2px solid #e0e1dd;
+    animation: modalAppear 0.5s ease;
+}
+
+.modal-step p {
+    color: #e0e1dd;
+    margin-bottom: 1rem;
+}
+
+#playerName {
+    padding: 0.8rem;
+    border: 2px solid #ec9f05;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    font-size: 1.1em;
+    width: 80%;
+    background: #0d1b2a;
+    color: #e0e1dd;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #778da9; }
+    to { text-shadow: 0 0 20px #415a77, 0 0 30px #1b263b; }
+}
+
+@keyframes tokenPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes modalAppear {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+    .board {
+        width: 100%;
+        height: auto;
+        grid-template-columns: repeat(15, 1fr);
+        grid-template-rows: repeat(15, 1fr);
+    }
+    .cell { font-size: 1em; }
+    .title { font-size: 2em; }
+    .modal-content { width: 90%; padding: 1.5rem; }
+}

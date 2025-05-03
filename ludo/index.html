@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludo Legends</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container" id="gameContainer">
+        <h1 class="title">Ludo Legends</h1>
+        <div class="board" id="board" style="display: none;">
+            <!-- Ludo board will be dynamically generated in JS -->
+        </div>
+        <div class="status" id="status"></div>
+        <button class="btn reset-btn" onclick="resetGame()" style="display: none;">Restart</button>
+    </div>
+
+    <!-- Start Modal -->
+    <div class="modal" id="startModal">
+        <div class="modal-content">
+            <h2>Welcome to Ludo Legends</h2>
+            <div class="modal-step" id="nameStep">
+                <input type="text" id="playerName" placeholder="Enter your name" maxlength="15">
+                <button class="btn" onclick="nextStep()">Next</button>
+            </div>
+            <div class="modal-step" id="modeStep" style="display: none;">
+                <p>Choose Game Mode:</p>
+                <button class="btn" onclick="startGame('classic')">Classic</button>
+                <button class="btn" onclick="startGame('speed')">Speed</button>
+                <button class="btn" onclick="startGame('team')">Team</button>
+                <button class="btn" onclick="startGame('powerup')">Power-Up</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

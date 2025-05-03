@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Quiz Challenge</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Loading Screen -->
+    <div class="loading fixed inset-0 bg-indigo-900 flex items-center justify-center z-50">
+        <div class="loader relative w-24 h-24">
+            <div class="loader-inner"></div>
+            <div class="loader-inner"></div>
+            <div class="loader-inner"></div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container" class="relative w-full max-w-3xl p-6 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl shadow-2xl">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-indigo-400 text-center mb-6">Ultimate Quiz Challenge</h1>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="text-center">
+            <label for="question-count" class="text-lg font-semibold text-gray-200">Number of Questions:</label>
+            <select id="question-count" class="mt-4 p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:ring-2 focus:ring-indigo-400 w-full md:w-48">
+                <!-- Options from 5 to 25 -->
+                <script>
+                    for (let i = 5; i <= 25; i++) {
+                        document.write(`<option value="${i}">${i}</option>`);
+                    }
+                </script>
+            </select>
+            <button id="start-btn" class="btn btn-start mt-6 w-full md:w-auto">Start Quiz</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="hidden">
+            <div class="flex justify-between items-center mb-4">
+                <div class="text-xl font-semibold text-gray-200">Question <span id="current-question">1</span> of <span id="total-questions">10</span></div>
+                <div class="text-xl font-semibold text-gray-200">Score: <span id="score">0</span></div>
+            </div>
+            <div id="question" class="p-4 bg-gray-900 text-gray-200 rounded-lg shadow-inner mb-4 text-lg md:text-xl"></div>
+            <div id="options" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            <button id="next-btn" class="btn btn-next mt-6 w-full md:w-auto mx-auto block hidden">Next Question</button>
+        </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div class="modal-content bg-gradient-to-br from-indigo-800 to-indigo-600 rounded-2xl p-8 w-11/12 max-w-md shadow-xl">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-yellow-300 mb-6">Quiz Complete!</h2>
+            <p id="result-score" class="text-xl md:text-2xl text-white mb-4">Score: 0 / 0</p>
+            <p id="result-percentage" class="text-lg md:text-xl text-white mb-6">Percentage: 0%</p>
+            <div class="modal-buttons flex flex-col md:flex-row gap-4 justify-center">
+                <button class="btn btn-retry" onclick="retryQuiz()">Retry</button>
+                <button class="btn btn-answers" onclick="showAnswers()">Show Answers</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Answers Modal -->
+    <div id="answers-modal" class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div class="modal-content bg-gradient-to-br from-gray-800 to-gray-700 rounded-2xl p-8 w-11/12 max-w-3xl shadow-xl overflow-y-auto max-h-[80vh]">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-indigo-400 mb-6">Correct Answers</h2>
+            <div id="answers-list" class="text-gray-200"></div>
+            <button class="btn btn-close mt-6 w-full md:w-auto mx-auto block" onclick="closeAnswers()">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
